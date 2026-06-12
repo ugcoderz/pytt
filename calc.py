@@ -10,10 +10,7 @@ def subtract(a, b):
 
 def multiply(a, b):
     """Returns the product of two numbers"""
-    result = 0
-    for i in range(a):
-        result += b
-    return result
+    return a * b
 
 
 def divide(a, b):
@@ -43,7 +40,7 @@ def main():
             print("Result:", subtract(num1, num2))
 
         elif choice == "3":
-            print("Result:", multiply(int(num1), int(num2)))
+            print("Result:", multiply(num1, num2))
 
         elif choice == "4":
             print("Result:", divide(num1, num2))
