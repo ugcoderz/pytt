@@ -1,49 +1,65 @@
 def add(a, b):
-    return a - b  # Bug: should be addition
+    """Returns the sum of two numbers"""
+    return a + b
 
 
 def subtract(a, b):
-    return a + b  # Bug: should be subtraction
+    """Returns the difference of two numbers"""
+    return a - b
 
 
 def multiply(a, b):
+    """Returns the product of two numbers"""
     result = 0
     for i in range(a):
-        result += a  # Bug: should add b
+        result += b
     return result
 
 
 def divide(a, b):
-    return a // b  # Bug: integer division and no zero check
+    """Returns the quotient of two numbers"""
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero")
+    return a / b
 
 
-print("Simple Calculator")
-print("1. Add")
-print("2. Subtract")
-print("3. Multiply")
-print("4. Divide")
+def main():
+    print("Simple Calculator")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
 
-choice = input("Enter choice: ")
+    choice = input("Enter choice: ")
 
-num1 = int(input("Enter first number: "))
-num2 = int(input("Enter second number: "))
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
 
-if choice == "1":
-    print("Result:", subtract(num1, num2))  # Bug: wrong function
+        if choice == "1":
+            print("Result:", add(num1, num2))
 
-elif choice == "2":
-    print("Result:", add(num1, num2))  # Bug: wrong function
+        elif choice == "2":
+            print("Result:", subtract(num1, num2))
 
-elif choice == "3":
-    print("Result:", divide(num1, num2))  # Bug: wrong function
+        elif choice == "3":
+            print("Result:", multiply(int(num1), int(num2)))
 
-elif choice == "4":
-    print("Result:", multiply(num1, num2))  # Bug: wrong function
+        elif choice == "4":
+            print("Result:", divide(num1, num2))
 
-else:
-    print("Invalid choice")
+        else:
+            print("Invalid choice")
 
-print("Calculation completed successfully!")
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+    except ZeroDivisionError as e:
+        print("Error:", e)
+    except Exception as e:
+        print("An error occurred:", e)
 
-# Hidden bug
-print("Final value:", result)
+    print("Calculation completed.")
+
+
+if __name__ == "__main__":
+    main()
